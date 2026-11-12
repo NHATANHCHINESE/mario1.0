@@ -18,6 +18,7 @@ Hướng dẫn chính thức: https://docs.github.com/en/pages/getting-started-w
 - `index.html`: menu và giao diện game.
 - `style.css`: bố cục, màu sắc, font và giao diện cho màn hình nhỏ.
 - `game.js`: toàn bộ luật chơi, vẽ cảnh pixel, từ vựng, gợi ý, quản lý bộ từ và nhạc nền.
+- `vocab-import.js`: tự tách danh sách chữ Hán, pinyin và nghĩa tiếng Việt khi dán.
 - `fonts.css`, `fonts/`: font được lưu tại chỗ, kèm giấy phép OFL.
 - `assets/logo-nhatanh.png`: logo gốc người dùng cung cấp, có nền trong suốt.
 - `.nojekyll`: cho phép GitHub Pages phục vụ trực tiếp các file tĩnh.
@@ -38,3 +39,17 @@ Sau đó mở http://localhost:8765. Nhạc chỉ bắt đầu sau thao tác và
 Muốn thêm, sửa hoặc xóa từ khi chơi: **Menu → Sổ từ vựng**. Danh sách tự chỉnh và điểm được lưu trong trình duyệt, riêng cho từng địa chỉ website. Chúng không nằm trong file mã nguồn và không tự chuyển từ bản demo sang địa chỉ GitHub Pages. Từ vựng mặc định nằm trong mảng `words` đầu file `game.js` nếu bạn muốn chỉnh bộ từ ban đầu cho mọi người chơi.
 
 Logo thuộc thương hiệu do người dùng cung cấp. Các font có giấy phép đi kèm trong `fonts/`. Nhạc nền chiptune được tổng hợp bằng mã trong `game.js`; không cần file nhạc bên ngoài.
+
+## Thêm từ bằng cách dán danh sách
+
+Mở **Sổ từ vựng**, chọn bộ từ, rồi dán cả danh sách vào ô **Dán danh sách từ vựng**. Ví dụ:
+
+```text
+你好 nǐ hǎo Xin chào
+谢谢 | xiè xie | Cảm ơn
+学校 - xué xiào - Trường học
+```
+
+Có thể copy bảng ba cột từ Excel, dùng dấu `|`, dấu gạch ngang, dấu chấm phẩy hoặc dấu phẩy CSV. Pinyin có dấu, không dấu và số thanh điệu đều được nhận. Mỗi mục cần có đủ chữ Hán, pinyin và nghĩa tiếng Việt; công cụ không tự dịch hay tự tạo pinyin từ chữ Hán.
+
+Bảng xem trước xuất hiện tự động. Kiểm tra hoặc sửa trực tiếp ba cột, bỏ chọn các dòng không muốn nhập, rồi bấm **Thêm X từ vào bộ này**. Dòng thiếu dữ liệu hoặc pinyin chưa hợp lệ được đánh dấu để sửa. Từ đã có trong bộ hoặc lặp lại trong danh sách được bỏ qua và không ghi đè lên nghĩa cũ. Các thay đổi chỉ được lưu sau khi bấm thêm.
