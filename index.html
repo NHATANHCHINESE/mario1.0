@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,interactive-widget=resizes-content">
+  <meta name="theme-color" content="#f6f6ed">
+  <meta name="description" content="Gõ pinyin, vượt chướng ngại vật và khám phá tiếng Trung trong thế giới pixel của NHATANH CHINESE.">
+  <title>NHATANH CHINESE — Phiêu lưu Hán tự</title>
+  <link rel="icon" type="image/png" href="assets/logo-nhatanh.png">
+  <link rel="stylesheet" href="fonts.css"><link rel="stylesheet" href="style.css">
+</head>
+<body data-screen="menu">
+  <main id="app">
+    <section class="game-shell" aria-label="Game Phiêu lưu Hán tự">
+      <div class="scene" id="scene">
+        <canvas id="game" width="1200" height="450" role="img" aria-label="Thế giới platformer pixel với đồng cỏ, gạch, xu và nhà thám hiểm gấu trúc"></canvas>
+        <div class="in-game hud"><div class="hud-left"><span><small>ĐIỂM</small><b id="score">00000</b></span><span><small>XU</small><b class="gold"><i class="coin-icon"></i> <span id="coins">00</span></b></span></div><div class="hud-right"><span id="lives" title="Luyện tập không mất mạng">♥ ♥ ♥</span><span class="timer" id="timer" hidden>20s</span></div></div>
+        <div class="in-game game-controls"><button id="menuBtn" class="game-button" aria-label="Về menu chính">☰ <span>Menu</span></button><button id="pauseBtn" class="game-button" aria-label="Tạm dừng" title="Tạm dừng (Esc)">Ⅱ</button></div>
+        <div class="in-game scene-location"><span class="location-dot"></span><span id="locationName">ĐỒNG CỎ CHÀO HỎI</span><span class="location-divider">/</span><span id="sceneStep">01 — 12</span></div>
+        <div class="in-game combo-toast" id="comboToast"></div>
+        <div class="overlay" id="overlay"><div class="start-card"><div class="start-tag">CHUYẾN ĐI CỦA BẠN BẮT ĐẦU TỪ ĐÂY</div><h2 id="overlayTitle">Một từ đúng. Một bước tiến.</h2><p id="overlayDesc">Giúp bạn Gấu vượt đồng cỏ bằng cách gõ pinyin của từ đang hiện.</p><button class="primary" id="startBtn">Bắt đầu phiêu lưu <span>→</span></button><small id="overlayHint">Không cần phím di chuyển · Cứ gõ, Gấu sẽ tự nhảy!</small></div></div>
+      </div>
+
+      <div class="in-game game-dock"><div class="play-panel"><div class="word-card"><div class="small-label">TỪ CẦN GÕ <span id="wordIndex">01 / 12</span></div><div class="word-body"><span id="hanzi" lang="zh-CN">你好</span><div><div id="pinyin" class="pinyin">•••</div><div id="meaning">Xin chào</div></div><button class="listen" id="listenBtn" aria-label="Nghe phát âm từ hiện tại" title="Nghe phát âm">◖))</button></div></div><form class="typing-zone" id="typingForm" autocomplete="off"><label for="typingInput">GÕ PINYIN ĐỂ NHẢY <span>ENTER ↵</span></label><div class="input-wrap" id="inputWrap"><span class="input-arrow">›</span><input id="typingInput" autocomplete="off" autocapitalize="off" spellcheck="false" aria-describedby="feedback" placeholder="Nhập pinyin…" disabled><button type="button" id="hintBtn" title="Hiện pinyin của từ này" aria-label="Gợi ý pinyin" aria-controls="pinyin" aria-expanded="false">✧ <span>Gợi ý</span></button></div><div class="input-bottom"><span id="feedback" role="status" aria-live="polite">Chấp nhận pinyin không dấu, có dấu hoặc số thanh điệu.</span><span class="key-hint"><kbd>Enter</kbd> kiểm tra</span></div></form></div>
+      <div class="progress-row"><span><i></i> HÀNH TRÌNH</span><div class="progress-track" id="progressTrack" aria-label="Tiến độ màn chơi"></div><b id="progressLabel">0 / 12 từ</b></div>
+      </div>
+    </section>
+
+    <section id="mainMenu" class="menu-screen" aria-label="Menu chính">
+      <header class="menu-header"><a class="brand" href="./" aria-label="NHATANH CHINESE, trang chủ"><img class="brand-logo" src="assets/logo-nhatanh.png" alt="Logo Trung tâm đào tạo Hán ngữ Nhật Anh" width="64" height="64"><span>NHATANH CHINESE</span></a><span class="edition">A LITTLE WORD. A BIG ADVENTURE.</span></header>
+      <div class="menu-layout">
+        <div class="menu-hero"><div class="eyebrow"><i></i> PHIÊU LƯU HÁN TỰ</div><h1>NHATANH<br><span>CHINESE</span><sup>✦</sup></h1><p class="hero-subtitle">Gõ một từ mới.<br> Mở một thế giới.</p><p class="hero-desc">Cùng Gấu vượt đồng cỏ, khám phá thị trấn<br>và thắp sáng chợ đêm bằng tiếng Trung.</p><div class="hero-badges"><span>3 thế giới</span><i>✦</i><span id="vocabTotal">36 từ mới</span><i>✦</i><span>Vô vàn bước tiến</span></div><div class="hero-key"><kbd>N</kbd><kbd>I</kbd><kbd>H</kbd><kbd>A</kbd><kbd>O</kbd><span>→</span><b lang="zh-CN">你好</b></div></div>
+        <div class="menu-card"><div class="card-heading"><span class="small-label">CHỌN HÀNH TRÌNH CỦA BẠN</span><span class="menu-pixel-star">✦</span></div><h2>Chuẩn bị lên đường!</h2>
+          <div class="worlds" aria-label="Chọn thế giới">
+            <button class="world-card selected" data-level="0" aria-pressed="true"><span class="level-art grass-art">01</span><span><b>Đồng cỏ chào hỏi</b><small>Chào hỏi & con người · 12 từ</small></span><span class="world-state">◆</span></button>
+            <button class="world-card" data-level="1" aria-pressed="false"><span class="level-art sunset-art">02</span><span><b>Thị trấn nhỏ</b><small>Gia đình & cuộc sống · 12 từ</small></span><span class="world-state">◆</span></button>
+            <button class="world-card" data-level="2" aria-pressed="false"><span class="level-art night-art">03</span><span><b>Chợ đêm đèn lồng</b><small>Ăn uống & mua sắm · 12 từ</small></span><span class="world-state">◆</span></button>
+            <button class="world-card" data-level="3" aria-pressed="false"><span class="level-art custom-art">＋</span><span><b>Từ vựng của tôi</b><small>Bộ từ riêng · 0 từ</small></span><span class="world-state">◆</span></button>
+          </div>
+          <div class="menu-options"><label for="mode"><span class="small-label">CHẾ ĐỘ CHƠI</span><select id="mode" aria-label="Chế độ chơi"><option value="practice">Luyện tập · Không giới hạn</option><option value="challenge">Thử thách · 20 giây / từ</option></select></label><div class="sound-option"><span class="small-label">NHẠC 8-BIT</span><button class="icon-btn" id="soundBtn" aria-label="Tắt nhạc và âm thanh" title="Bật / tắt nhạc nền và hiệu ứng">♫</button></div></div>
+          <div class="pinyin-setting">Pinyin luôn được che <span>BẤM GỢI Ý KHI CẦN</span></div>
+          <button class="primary enter-game" id="enterGame">Vào game <span>→</span></button><button class="resume-game" id="resumeGame" hidden>Tiếp tục lượt đang chơi →</button>
+          <div class="menu-links"><button id="wordbookBtn">▤ Sổ từ vựng <b id="bookCount">0</b></button><span></span><button id="helpBtn">? Cách chơi</button></div>
+        </div>
+      </div>
+      <footer class="menu-footer"><span>Gõ đúng pinyin, Gấu sẽ tự nhảy!</span><span id="menuRecord">Mỗi từ mới là một bước tiến.</span></footer>
+      <span id="worldNumber" hidden>THẾ GIỚI 01</span><span id="worldTitle" hidden>Đồng cỏ chào hỏi</span>
+    </section>
+  </main>
+
+  <dialog id="modal"><div class="modal-head"><div><div class="eyebrow">NHATANH CHINESE</div><h2 id="modalTitle">Cách chơi</h2></div><button class="icon-btn" id="closeModal" aria-label="Đóng">×</button></div><div id="modalContent"></div></dialog>
+  <script src="game.js"></script>
+</body>
+</html>
